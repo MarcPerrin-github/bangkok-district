@@ -303,6 +303,7 @@ h1,h2,h3{font-family:var(--font-display);line-height:1.02;margin:0;letter-spacin
   font-family:var(--font-mono);font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
   background:var(--red);color:#fff;padding:2px 7px;border-radius:999px;
 }
+.badge-pop--todo{background:rgba(255,255,255,.12);color:#C9BBB7}
 .menu-note{
   margin-top:26px;font-size:13px;color:#C9BBB7;
   border-left:3px solid var(--red);padding:10px 14px;background:rgba(255,255,255,.04);border-radius:0 8px 8px 0;
@@ -874,19 +875,19 @@ function renderMenu(items){
     tabsEl.appendChild(tab);
 
     const panel = document.createElement('div');
-    panel.className='menu-list'; panel.setAttribute('role','tabpanel');
+    panel.className='menu-list dish-list'; panel.setAttribute('role','tabpanel');
     panel.id='panel-'+id; panel.setAttribute('aria-labelledby','tab-'+id);
     panel.tabIndex=0; if (idx!==0) panel.hidden=true;
 
     map[cat].forEach(it=>{
       const dish = document.createElement('div'); dish.className='dish';
-      const main = document.createElement('div'); main.className='dish-main';
+      const main = document.createElement('div'); main.className='dish-l';
       const nm = document.createElement('div'); nm.className='dish-name';
       nm.appendChild(document.createTextNode(it.nom || it.name || ''));
       const badge = it.badge || '';
       if (badge){
         const b = document.createElement('span');
-        b.className = 'badge' + (/confirm|complé|complet/i.test(badge) ? ' badge--todo' : '');
+        b.className = 'badge-pop' + (/confirm|complé|complet/i.test(badge) ? ' badge-pop--todo' : '');
         b.textContent = badge; nm.appendChild(b);
       }
       main.appendChild(nm);
@@ -918,11 +919,9 @@ function renderHours(items){
     const day = it.jour || it.day || '';
     const h   = it.horaires || it.hours || '';
     const line = document.createElement('div');
-    line.style.cssText='display:flex;justify-content:space-between;gap:14px;max-width:260px';
+    line.className = 'hours-row' + (/ferm/i.test(h) ? ' closed' : '');
     const ds = document.createElement('span'); ds.textContent = day;
-    const hs = document.createElement('span'); hs.textContent = h;
-    hs.style.fontWeight='600';
-    if (/ferm/i.test(h)) hs.style.opacity='.55';
+    const hs = document.createElement('b'); hs.textContent = h;
     line.appendChild(ds); line.appendChild(hs);
     dd.appendChild(line);
   });
