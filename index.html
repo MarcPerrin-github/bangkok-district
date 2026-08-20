@@ -157,6 +157,7 @@ h1,h2,h3{font-family:var(--font-display);line-height:1.02;margin:0;letter-spacin
 }
 .nav-links a:hover{opacity:1;color:var(--white)}
 .nav-cta{display:flex;align-items:center;gap:10px}
+.nav-cta-compact{display:none}
 .vt-nav-toggle{
   display:none;
   background:none;
@@ -168,6 +169,12 @@ h1,h2,h3{font-family:var(--font-display);line-height:1.02;margin:0;letter-spacin
 }
 @media(max-width:860px){
   .nav-links{display:none}
+  .nav-cta-full{display:none}
+  .nav-cta-compact{
+    display:inline-flex;
+    padding:.55em .7em;
+    font-size:1.1rem;
+  }
   .vt-nav-toggle{
     display:inline-flex;
     align-items:center;
@@ -457,7 +464,8 @@ h1,h2,h3{font-family:var(--font-display);line-height:1.02;margin:0;letter-spacin
       <a href="#infos">Infos & accès</a>
     </div>
     <div class="nav-cta">
-      <a href="tel:+33148749499" class="btn btn-red">Commander&nbsp;· 01&nbsp;48&nbsp;74&nbsp;94&nbsp;99</a>
+      <a href="tel:+33148749499" class="btn btn-red nav-cta-full">Commander&nbsp;· 01&nbsp;48&nbsp;74&nbsp;94&nbsp;99</a>
+      <a href="tel:+33148749499" class="btn btn-red nav-cta-compact" aria-label="Appeler pour commander : 01 48 74 94 99">📞</a>
     </div>
     <button
       class="vt-nav-toggle"
